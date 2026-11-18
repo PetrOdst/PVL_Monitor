@@ -7,7 +7,7 @@ Home Assistant custom integration for current measurements from VD Slapy, publis
 - Reads current values from the public PVL measurements page every 10 minutes.
 - Creates sensors for water level, volume, inflow, outflow, 24-hour precipitation, and air temperature.
 - Uses Home Assistant Recorder for history. The integration does not download historical measurements from PVL.
-- Includes a Lovelace card with current readings, one-hour and 24-hour water-level charts, and configurable named reference levels.
+- Includes a responsive Lovelace card with a configurable water-level gauge, hydrological readings, one-hour and 24-hour charts, and named reference levels.
 
 ## Data source and parsing
 
@@ -31,14 +31,22 @@ Copy `www/pvl-reservoir-card.js` to the `www` directory under your Home Assistan
 
 An integration-type HACS repository installs the integration folder, not the root-level `www` card file. HACS users therefore need to install/register the card separately, or use a future dedicated HACS dashboard repository for the card.
 
-## Lovelace configuration
+## Lovelace card configuration
 
-The card defaults to the entity IDs created by the integration and provides three reference examples from the Slapy page. Change the values or names to define your own reference levels. The water-level entity ID can be overridden if it differs in your Home Assistant entity registry.
+The card uses YAML configuration and does not require a frontend framework or visual editor. Add the resource `/local/pvl-reservoir-card.js` as a JavaScript module, then add a manual card with a configuration such as:
 
 ```yaml
 type: custom:pvl-reservoir-card
-entities:
-  water_level: sensor.pvl_reservoir_slapy_water_level
+name: VD Slapy
+level_entity: sensor.pvl_reservoir_slapy_water_level
+inflow_entity: sensor.pvl_reservoir_slapy_inflow
+outflow_entity: sensor.pvl_reservoir_slapy_outflow
+volume_entity: sensor.pvl_reservoir_slapy_volume
+precipitation_24h_entity: sensor.pvl_reservoir_slapy_precipitation_24h
+air_temperature_entity: sensor.pvl_reservoir_slapy_air_temperature
+min_level: 220
+max_level: 273
+show_history: true
 references:
   - name: Hladina stálého nadržení
     level: 246.6
@@ -48,7 +56,26 @@ references:
     level: 270.6
 ```
 
-The card selection is stored in the browser's local storage. It is not synchronized between different browsers or devices. The card reads only Home Assistant sensor states and Recorder history; it does not fetch data from PVL.
+The entity IDs above correspond to the entities defined by this integration. Entity IDs can be changed in Home Assistant, so check **Settings → Devices & services → PVL Reservoir Monitor** if one is different. All entity parameters are optional and default to the integration's Slapy entities. A missing or unavailable entity is displayed as unavailable without breaking the card.
+
+### Supported card options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `name` | string | `VD Slapy` | Card heading. |
+| `level_entity` | entity ID | `sensor.pvl_reservoir_slapy_water_level` | Water-level sensor used by the gauge, difference, and history chart. |
+| `inflow_entity` | entity ID | `sensor.pvl_reservoir_slapy_inflow` | Current inflow sensor. |
+| `outflow_entity` | entity ID | `sensor.pvl_reservoir_slapy_outflow` | Current outflow sensor. |
+| `volume_entity` | entity ID | `sensor.pvl_reservoir_slapy_volume` | Current reservoir volume sensor. |
+| `precipitation_24h_entity` | entity ID | `sensor.pvl_reservoir_slapy_precipitation_24h` | Rolling 24-hour precipitation sensor. |
+| `air_temperature_entity` | entity ID | `sensor.pvl_reservoir_slapy_air_temperature` | Current air temperature sensor. |
+| `min_level` | number (m) | `220` | Lower limit of the level gauge. |
+| `max_level` | number (m) | `273` | Upper limit of the level gauge; must be greater than `min_level`. |
+| `show_history` | boolean | `true` | Show the one-hour and 24-hour Recorder history chart. |
+| `references` | list of `{name, level}` | Three Slapy examples | Named reference levels for the selectable level difference. Set `[]` to hide the reference selector. |
+| `reference_key` | string | Water-level entity ID | Optional browser storage key for the selected reference. |
+
+For backward compatibility, the previous `entities:` mapping (`water_level`, `inflow`, `outflow`, `volume`, `precipitation_24h`, `air_temperature`) is also accepted. Explicit `*_entity` options take precedence. The selected reference remains stored in browser local storage and is not synchronized across devices. History is read from Home Assistant Recorder; the card does not contact PVL.
 
 ## Sensors
 
