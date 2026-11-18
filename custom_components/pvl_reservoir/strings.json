@@ -1,0 +1,13 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "PVL Reservoir Monitor is already configured."
+    },
+    "step": {
+      "user": {
+        "title": "PVL Reservoir Monitor",
+        "description": "Add the public PVL measurements for VD Slapy."
+      }
+    }
+  }
+}

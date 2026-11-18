@@ -1,0 +1,11 @@
+{
+  "domain": "pvl_reservoir",
+  "name": "PVL Reservoir Monitor",
+  "codeowners": ["@OWNER"],
+  "config_flow": true,
+  "documentation": "https://github.com/OWNER/PVL_Monitor",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/OWNER/PVL_Monitor/issues",
+  "version": "0.1.0"
+}
