@@ -38,12 +38,12 @@ The card uses YAML configuration and does not require a frontend framework or vi
 ```yaml
 type: custom:pvl-reservoir-card
 name: VD Slapy
-level_entity: sensor.pvl_reservoir_slapy_water_level
-inflow_entity: sensor.pvl_reservoir_slapy_inflow
-outflow_entity: sensor.pvl_reservoir_slapy_outflow
-volume_entity: sensor.pvl_reservoir_slapy_volume
-precipitation_24h_entity: sensor.pvl_reservoir_slapy_precipitation_24h
-air_temperature_entity: sensor.pvl_reservoir_slapy_air_temperature
+level_entity: sensor.vd_slapy_pvl_reservoir_slapy_water_level
+inflow_entity: sensor.vd_slapy_pvl_reservoir_slapy_inflow
+outflow_entity: sensor.vd_slapy_pvl_reservoir_slapy_outflow
+volume_entity: sensor.vd_slapy_pvl_reservoir_slapy_volume
+precipitation_24h_entity: sensor.vd_slapy_pvl_reservoir_slapy_precipitation_24h
+air_temperature_entity: sensor.vd_slapy_pvl_reservoir_slapy_air_temperature
 min_level: 220
 max_level: 273
 show_history: true
@@ -63,12 +63,12 @@ The entity IDs above correspond to the entities defined by this integration. Ent
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | string | `VD Slapy` | Card heading. |
-| `level_entity` | entity ID | `sensor.pvl_reservoir_slapy_water_level` | Water-level sensor used by the gauge, difference, and history chart. |
-| `inflow_entity` | entity ID | `sensor.pvl_reservoir_slapy_inflow` | Current inflow sensor. |
-| `outflow_entity` | entity ID | `sensor.pvl_reservoir_slapy_outflow` | Current outflow sensor. |
-| `volume_entity` | entity ID | `sensor.pvl_reservoir_slapy_volume` | Current reservoir volume sensor. |
-| `precipitation_24h_entity` | entity ID | `sensor.pvl_reservoir_slapy_precipitation_24h` | Rolling 24-hour precipitation sensor. |
-| `air_temperature_entity` | entity ID | `sensor.pvl_reservoir_slapy_air_temperature` | Current air temperature sensor. |
+| `level_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_water_level` | Water-level sensor used by the gauge, difference, and history chart. |
+| `inflow_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_inflow` | Current inflow sensor. |
+| `outflow_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_outflow` | Current outflow sensor. |
+| `volume_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_volume` | Current reservoir volume sensor. |
+| `precipitation_24h_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_precipitation_24h` | Rolling 24-hour precipitation sensor. |
+| `air_temperature_entity` | entity ID | `sensor.vd_slapy_pvl_reservoir_slapy_air_temperature` | Current air temperature sensor. |
 | `min_level` | number (m) | `220` | Lower limit of the level gauge. |
 | `max_level` | number (m) | `273` | Upper limit of the level gauge; must be greater than `min_level`. |
 | `show_history` | boolean | `true` | Show the one-hour and 24-hour Recorder history chart. |

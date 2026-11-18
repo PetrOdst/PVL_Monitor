@@ -1,10 +1,10 @@
 const DEFAULT_ENTITIES = {
-  water_level: "sensor.pvl_reservoir_slapy_water_level",
-  inflow: "sensor.pvl_reservoir_slapy_inflow",
-  outflow: "sensor.pvl_reservoir_slapy_outflow",
-  volume: "sensor.pvl_reservoir_slapy_volume",
-  precipitation_24h: "sensor.pvl_reservoir_slapy_precipitation_24h",
-  air_temperature: "sensor.pvl_reservoir_slapy_air_temperature",
+  water_level: "sensor.vd_slapy_pvl_reservoir_slapy_water_level",
+  inflow: "sensor.vd_slapy_pvl_reservoir_slapy_inflow",
+  outflow: "sensor.vd_slapy_pvl_reservoir_slapy_outflow",
+  volume: "sensor.vd_slapy_pvl_reservoir_slapy_volume",
+  precipitation_24h: "sensor.vd_slapy_pvl_reservoir_slapy_precipitation_24h",
+  air_temperature: "sensor.vd_slapy_pvl_reservoir_slapy_air_temperature",
 };
 
 const ENTITY_OPTIONS = {
